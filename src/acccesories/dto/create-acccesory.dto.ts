@@ -5,9 +5,9 @@ export class CreateAcccesoryDto {
   @MinLength(1)
   name: string;
 
-  @IsString()
   @IsOptional()
-  description: string;
+  @IsString()
+  description?: string | null;
 
   @IsString()
   @IsIn(['sewable', 'gluable'])

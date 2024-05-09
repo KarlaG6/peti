@@ -9,26 +9,28 @@ import { Repository } from 'typeorm';
 export class AcccesoriesService {
   constructor(
     @InjectRepository(Acccesory)
-    private readonly AcccesoryRepository: Repository<Acccesory>,
+    private readonly acccesoryRepository: Repository<Acccesory>,
   ) {}
 
-  create(createAcccesoryDto: CreateAcccesoryDto) {
-    return 'This action adds a new acccesory';
+  async create(createAcccesoryDto: CreateAcccesoryDto) {
+    // const accesory = this.acccesoryRepository.create(createAcccesoryDto);
+    // return await this.acccesoryRepository.save(accesory);
+    return await this.acccesoryRepository.save(createAcccesoryDto);
   }
 
   async findAll() {
-    return await this.AcccesoryRepository.find();
+    return await this.acccesoryRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} acccesory`;
+  async findOne(id: number) {
+    return await this.acccesoryRepository.findOneBy({ id });
   }
 
-  update(id: number, updateAcccesoryDto: UpdateAcccesoryDto) {
-    return `This action updates a #${id} acccesory`;
+  async update(id: number, updateAcccesoryDto: UpdateAcccesoryDto) {
+    return await this.acccesoryRepository.update(id, updateAcccesoryDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} acccesory`;
+  async remove(id: number) {
+    return await this.acccesoryRepository.softDelete({ id });
   }
 }
